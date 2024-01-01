@@ -1,5 +1,5 @@
 // 1. Generate a random number between 1 and 100. [OK]
-// 2. Record the turn number the player is on. Start it on 1.
+// 2. Record the turn number the player is on. Start it on 1. [OK]
 // 3. Provide the player with a way to guess what the number is.
 // 4. Once a guess has been submitted first record it somewhere so the user can see their previous guesses.
 // 5. Next, check whether it is the correct number.
@@ -35,4 +35,27 @@ function checkGuess() {
     guesses.textContent = "Previous guesses:";
   }
   guesses.textContent = `${guesses.textContent} ${userGuess}`;
+
+  if (userGuess === randomNumber) {
+    lastResult.textContent = "Congratulations! You got it right!";
+    lastResult.style.backgroundColor = "green";
+    lowOrHi.textContent = "";
+    setGameOver();
+  } else if (guessCount === 10) {
+    lastResult.textContent = "!!!GAME OVER!!!";
+    lowOrHi.textContent = "";
+    setGameOver();
+  } else {
+    lastResult.textContent = "Wrong!";
+    lastResult.style.backgroundColor = "red";
+    if (userGuess < randomNumber) {
+      lowOrHi.textContent = "Last guess was too low!";
+    } else if (userGuess > randomNumber) {
+      lowOrHi.textContent = "Last guess was too high!";
+    }
+  }
+
+  guessCount++;
+  guessField.value = "";
+  guessField.focus();
 }
