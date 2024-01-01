@@ -1,4 +1,4 @@
-// 1. Generate a random number between 1 and 100.
+// 1. Generate a random number between 1 and 100. [OK]
 // 2. Record the turn number the player is on. Start it on 1.
 // 3. Provide the player with a way to guess what the number is.
 // 4. Once a guess has been submitted first record it somewhere so the user can see their previous guesses.
@@ -28,3 +28,11 @@ const guessField = document.querySelector(".guessField");
 
 let guessCount = 1;
 let resetButton;
+
+function checkGuess() {
+  const userGuess = Number(guessField.value);
+  if (guessCount === 1) {
+    guesses.textContent = "Previous guesses:";
+  }
+  guesses.textContent = `${guesses.textContent} ${userGuess}`;
+}
